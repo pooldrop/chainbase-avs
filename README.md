@@ -19,6 +19,18 @@ curl -L "https://github.com/docker/compose/releases/download/"$VER"/docker-compo
 chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 ```
+```bash
+sudo groupadd docker
+sudo usermod -aG docker $USER
+```
+```bash
+sudo rm -rf /usr/local/go
+curl -L https://go.dev/dl/go1.22.4.linux-amd64.tar.gz | sudo tar -xzf - -C /usr/local
+echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> $HOME/.bash_profile
+echo 'export PATH=$PATH:$(go env GOPATH)/bin' >> $HOME/.bash_profile
+source .bash_profile
+go version
+```
 ## Install Eigenlayer CLI
 ```bash
 curl -sSfL https://raw.githubusercontent.com/layr-labs/eigenlayer-cli/master/scripts/install.sh | sh -s
@@ -74,7 +86,9 @@ https://www.vecteezy.com/free-png/skull
 
 https://imagecompressor.11zon.com/en/compress-png/compress-png-to-900kb
 
-حالا لوگو را داخل گیت هاب آپلود کنید سپس یک فایل به نام metadata.json بسازید و داخل آن اطلاعات زیر را قرار دهید
+حالا لوگو را داخل گیت هاب آپلود کنید
+
+ سپس یک فایل به نام metadata.json بسازید و داخل آن اطلاعات زیر را قرار دهید
 ```
 {
   "name": "<your-name>",
@@ -84,6 +98,47 @@ https://imagecompressor.11zon.com/en/compress-png/compress-png-to-900kb
   "twitter": "<your-twitter>"
 }
 ```
+در قسمت logo شما باید url فایل logo آپلود شده در گیت هاب را وارد نمایید که لازم است blob را حذف نمایید
+
+حالا وارد سرور خود شوید و ادامه دهید
+```bash
+nano metadata.json
+```
+تمامی اطلاعات موجود را پاک کنید سپس تمامی اطلاعات خود را که داخل فایل metadata.json قرار دارد را وارد نمایید 
+
+نمونه اطلاعات را می توانید در لینک زیر ببینید
+
+https://raw.githubusercontent.com/pooldrop/chainbase-metadata/main/metadata.json
+
+> Ctrl + X
+>
+> Y
+>
+> Enter
+
+
+```bash
+nano operator.yaml
+```
+
+در قسمت  metadata_url آدرس metadata raw url خود را قرار دهید
+> Ctrl + X
+>
+> Y
+>
+> Enter
+
+## register operator
+```bash
+eigenlayer operator register operator.yaml
+```
+
+اطلاعات خود را ذخیره نمایید
+
+```bash
+
+
+
 
 
 
